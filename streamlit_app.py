@@ -15,6 +15,12 @@ name_on_order = st.text_input('Name on the order:')
 st.write('The name on your order will be:', name_on_order)
 
 
+import requests
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
+
+
+
 # Get the current credentials
 cnx = st.connection("snowflake")
 session = cnx.session()
