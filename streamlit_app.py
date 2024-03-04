@@ -32,17 +32,13 @@ if ingridents_list:
     for fruit_chosen in ingridents_list:
         ingridents_string += fruit_chosen + ' '
     st.write(ingridents_string)
+    import requests
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+    st.text(fruityvice_response.json())
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order, order_filled)
             values ('""" + ingridents_string + """','"""+name_on_order+ """','"""+'FALSE'+ """')"""
     st.write(my_insert_stmt)
     
-
-    import requests
-    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-    st.text(fruityvice_response)
-
-
-
     time_to_insert = st.button('Submit Order')
     
     if time_to_insert:
