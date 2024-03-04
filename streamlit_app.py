@@ -14,13 +14,6 @@ st.write(
 name_on_order = st.text_input('Name on the order:')
 st.write('The name on your order will be:', name_on_order)
 
-
-import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response)
-
-
-
 # Get the current credentials
 cnx = st.connection("snowflake")
 session = cnx.session()
@@ -42,6 +35,14 @@ if ingridents_list:
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order, order_filled)
             values ('""" + ingridents_string + """','"""+name_on_order+ """','"""+'FALSE'+ """')"""
     st.write(my_insert_stmt)
+    
+
+    import requests
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+    st.text(fruityvice_response)
+
+
+
     time_to_insert = st.button('Submit Order')
     
     if time_to_insert:
